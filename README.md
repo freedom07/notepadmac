@@ -9,16 +9,20 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/freedom07/notepadmac/releases/latest">
+    <img src="https://img.shields.io/badge/Download-macOS-blue?style=for-the-badge&logo=apple&logoColor=white" alt="Download for macOS">
+  </a>
+</p>
+
+<p align="center">
   <a href="https://github.com/freedom07/notepadmac/actions/workflows/build.yml"><img src="https://github.com/freedom07/notepadmac/actions/workflows/build.yml/badge.svg" alt="Build"></a>
-  <a href="https://github.com/freedom07/notepadmac/releases/latest"><img src="https://img.shields.io/github/v/release/freedom07/notepadmac?label=Download" alt="Release"></a>
+  <a href="https://github.com/freedom07/notepadmac/releases/latest"><img src="https://img.shields.io/github/v/release/freedom07/notepadmac" alt="Release"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/freedom07/notepadmac" alt="License"></a>
-  <img src="https://img.shields.io/badge/platform-macOS%2013%2B-blue" alt="Platform">
-  <img src="https://img.shields.io/badge/Swift-5.9%2B-orange" alt="Swift">
+  <img src="https://img.shields.io/badge/platform-macOS%2013%2B-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138" alt="Swift">
 </p>
 
 ---
-
-## Why NotepadMac?
 
 Switching from Windows to Mac and missing Notepad++? NotepadMac brings the familiar editing experience to macOS as a **true native app** — no Electron, no cross-platform compromises. Zero external dependencies, 100% Swift.
 
