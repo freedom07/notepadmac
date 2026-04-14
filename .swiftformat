@@ -1,0 +1,11 @@
+--swiftversion 5.9
+--indent 4
+--indentcase true
+--trimwhitespace always
+--voidtype void
+--wraparguments before-first
+--wrapparameters before-first
+--wrapcollections before-first
+--maxwidth 120
+--disable redundantReturn
+--disable trailingCommas

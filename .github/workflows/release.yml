@@ -1,0 +1,19 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+jobs:
+  release:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Tests
+        run: swift test
+      - name: Build DMG
+        run: bash Scripts/create-dmg.sh
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            .build/release/NotepadMac-*.dmg

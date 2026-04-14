@@ -1,0 +1,13 @@
+name: Lint
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  swiftlint:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install SwiftLint
+        run: brew install swiftlint
+      - name: Lint
+        run: swiftlint lint --strict

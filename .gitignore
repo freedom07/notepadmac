@@ -1,0 +1,51 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Build
+.build/
+DerivedData/
+*.o
+*.dSYM/
+
+# Xcode
+*.xcodeproj
+xcuserdata/
+
+# SPM
+.swiftpm/
+
+# IDE
+.idea/
+.vscode/
+
+# Editor temp files
+*.swp
+*~
+
+# Claude Code
+.claude/
+
+# Environment & secrets
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.keystore
+*.mobileprovision
+*.provisionprofile
+
+# Distribution artifacts
+*.dmg
+*.app
+*.pkg
+*.ipa
+dist/
+
+# Crash logs
+*.crash
+*.ips
