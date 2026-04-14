@@ -260,16 +260,17 @@ final class LineOperationsTests: XCTestCase {
     }
 
     func testCopyFilePath_nil() {
-        // Clear pasteboard first
+        // Skip on CI — NSPasteboard requires a GUI session
+        guard ProcessInfo.processInfo.environment["CI"] == nil else { return }
         let pb = NSPasteboard.general
         pb.clearContents()
         pb.setString("before", forType: .string)
         LineOperations.copyFilePath(from: nil)
-        // Should not change pasteboard
         XCTAssertEqual(pb.string(forType: .string), "before")
     }
 
     func testCopyFileName() {
+        guard ProcessInfo.processInfo.environment["CI"] == nil else { return }
         let url = URL(fileURLWithPath: "/tmp/test/file.txt")
         LineOperations.copyFileName(from: url)
         let pb = NSPasteboard.general
@@ -277,6 +278,7 @@ final class LineOperationsTests: XCTestCase {
     }
 
     func testCopyFileName_nil() {
+        guard ProcessInfo.processInfo.environment["CI"] == nil else { return }
         let pb = NSPasteboard.general
         pb.clearContents()
         pb.setString("before", forType: .string)
@@ -285,6 +287,7 @@ final class LineOperationsTests: XCTestCase {
     }
 
     func testCopyFileDirectory() {
+        guard ProcessInfo.processInfo.environment["CI"] == nil else { return }
         let url = URL(fileURLWithPath: "/tmp/test/file.txt")
         LineOperations.copyFileDirectory(from: url)
         let pb = NSPasteboard.general
@@ -292,6 +295,7 @@ final class LineOperationsTests: XCTestCase {
     }
 
     func testCopyFileDirectory_nil() {
+        guard ProcessInfo.processInfo.environment["CI"] == nil else { return }
         let pb = NSPasteboard.general
         pb.clearContents()
         pb.setString("before", forType: .string)
