@@ -49,7 +49,10 @@ Switching from Windows to Mac and missing Notepad++? NotepadMac brings the famil
 
 Download the latest `.dmg` from the [Releases](https://github.com/freedom07/notepadmac/releases) page, open it, and drag **NotepadMac** to your **Applications** folder.
 
-> **Note:** Since the app is not yet notarized, macOS will show an "unidentified developer" warning. Right-click the app and select **Open** to bypass this.
+> **Note:** The app is not yet code-signed. macOS may show a "damaged" or "unidentified developer" warning. Run this in Terminal after installing:
+> ```bash
+> xattr -cr /Applications/NotepadMac.app
+> ```
 
 ### Build from Source
 
