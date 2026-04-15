@@ -72,6 +72,7 @@ sed "s/\${APP_VERSION}/$APP_VERSION/g" > "$CONTENTS/Info.plist" << 'PLIST'
             <string>Default</string>
             <key>LSItemContentTypes</key>
             <array>
+                <string>public.text</string>
                 <string>public.plain-text</string>
                 <string>public.source-code</string>
                 <string>public.script</string>
@@ -84,6 +85,12 @@ sed "s/\${APP_VERSION}/$APP_VERSION/g" > "$CONTENTS/Info.plist" << 'PLIST'
                 <string>com.netscape.javascript-source</string>
                 <string>public.css</string>
                 <string>public.html</string>
+                <string>net.daringfireball.markdown</string>
+                <string>public.swift-source</string>
+                <string>public.c-source</string>
+                <string>public.c-plus-plus-source</string>
+                <string>public.objective-c-source</string>
+                <string>public.data</string>
             </array>
         </dict>
     </array>

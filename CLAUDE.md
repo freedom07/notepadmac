@@ -86,19 +86,32 @@ Once the tag is pushed, `.github/workflows/release.yml` automatically:
 
 Users download the DMG from the GitHub Releases page.
 
-### 4. Code signing (optional, requires Apple Developer ID)
+### 4. Code signing & notarization
 
-If you have a Developer ID ($99/year), sign before distributing:
+**Both the app AND the DMG must be signed.** Signing only the app causes "image damaged" errors on macOS.
+
 ```bash
+# 1. Sign the app (hardened runtime required for notarization)
 codesign --deep --force --options runtime \
-  --sign "Developer ID Application: Your Name (TEAMID)" \
+  --sign "Developer ID Application: Yun Jegal (8USUP9LW76)" \
   .build/release/NotepadMac.app
 
-xcrun notarytool submit NotepadMac-*.dmg \
-  --apple-id "your@email.com" --team-id TEAMID --wait
+# 2. Create DMG (Scripts/create-dmg.sh)
+bash Scripts/create-dmg.sh
 
-xcrun stapler staple NotepadMac-*.dmg
+# 3. Sign the DMG itself
+codesign --force --sign "Developer ID Application: Yun Jegal (8USUP9LW76)" \
+  --timestamp .build/release/NotepadMac-$VERSION.dmg
+
+# 4. Notarize (uses smackbook keychain profile)
+xcrun notarytool submit .build/release/NotepadMac-$VERSION.dmg \
+  --keychain-profile "smackbook" --wait
+
+# 5. Staple (allows offline Gatekeeper verification)
+xcrun stapler staple .build/release/NotepadMac-$VERSION.dmg
 ```
+
+**Keychain profile:** `smackbook` (shared with SmackBook, already stored via `notarytool store-credentials`)
 
 ## CI/CD Workflows
 

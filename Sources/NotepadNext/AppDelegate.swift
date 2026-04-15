@@ -34,6 +34,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
         }
 
         NSApp.activate(ignoringOtherApps: true)
+
+        // Check for updates (silent, once per day)
+        UpdateChecker.shared.checkOnLaunch()
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -68,6 +71,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
         if args.readOnly, let editor = mainWindowController?.currentEditor {
             editor.textView.isEditable = false
         }
+    }
+
+    func application(_ sender: NSApplication, open urls: [URL]) {
+        for url in urls {
+            mainWindowController?.openFile(at: url)
+        }
+        mainWindowController?.window?.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
@@ -123,6 +134,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
             keyEquivalent: ""
         )
         appMenu.addItem(aboutItem)
+
+        let checkUpdateItem = NSMenuItem(
+            title: "Check for Updates\u{2026}",
+            action: #selector(checkForUpdates(_:)),
+            keyEquivalent: ""
+        )
+        checkUpdateItem.target = self
+        appMenu.addItem(checkUpdateItem)
         appMenu.addItem(.separator())
 
         let prefsItem = NSMenuItem(
@@ -1159,6 +1178,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
 
     @objc func showPreferences(_ sender: Any?) {
         PreferencesWindowController.showPreferences()
+    }
+
+    @objc func checkForUpdates(_ sender: Any?) {
+        UpdateChecker.shared.checkNow()
     }
 
     @objc func showHelp(_ sender: Any?) {
